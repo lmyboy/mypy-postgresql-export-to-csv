@@ -14,7 +14,7 @@ import zipfile
 
 dotenv = DotEnv()
 
-consulta = [
+search = [
             ("file_name",
              f"""
                 SELECT *
@@ -23,8 +23,8 @@ consulta = [
             ]
 
 
-def run_query(consulta, foler_name):
-    for row in consulta:
+def run_query(search, foler_name):
+    for row in search:
         sql_name = row[0].__str__()
         sql = row[1].__str__()
 
@@ -60,7 +60,7 @@ def run_query(consulta, foler_name):
 
 
         # optional: generate md5 hash file and zip file
-        # print(f"--- MD5 para o arquivo {csv_file}: {file_hash.hexdigest()} ---")
+        # print(f"--- {csv_file} MD5: {file_hash.hexdigest()} ---")
         # open(f"{csv_file}.md5", "w").write(f"{file_hash.hexdigest()} at: {start_timestamp}")
         # print(f"--- {(time.time() - start_time)} seconds to generate MD5 hash for file {csv_file} ---\n")
         #
@@ -69,13 +69,13 @@ def run_query(consulta, foler_name):
         # zip.write(f"{csv_file}")
         # zip.close()
         #
-        # print(f"--- MD5 para o arquivo {csv_file}-python.zip: {file_hash.hexdigest()} ---")
+        # print(f"--- {csv_file}-python.zip MD5: {file_hash.hexdigest()} ---")
         # open(f"{csv_file}-python.zip.md5", "w").write(f"{file_hash.hexdigest()} at: {start_timestamp}")
         # print(f"--- {(time.time() - start_time)} seconds to generate MD5 hash for file {csv_file} ---\n")
 
 
 def main():
-    run_query(consulta, "output")
+    run_query(search, "output")
 
 if __name__ == "__main__":
     main()
